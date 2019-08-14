@@ -1,6 +1,11 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, session} = require('electron')
 const path = require('path')
+
+// session.defaultSession.webRequest.onBeforeSendHeaders((details, cb) => {
+//   details.requestHeaders['User-Agent'] = '';
+//   cb({cancel:false,requestHeaders:details.requestHeaders});
+// })
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -9,15 +14,12 @@ let mainWindow
 function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
-    webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
-    }
+    width: 392,
+    height: 812
   })
 
   // and load the index.html of the app.
-  mainWindow.loadFile('index.html')
+  mainWindow.loadURL('https://www.instagram.com/',{userAgent:'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1'})
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
